@@ -2,6 +2,7 @@ package br.com.todo.desafio_todolist.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,29 +18,26 @@ import br.com.todo.desafio_todolist.service.TodoService;
 @RestController
 @RequestMapping("/todos")
 public class TodoController {
-    private final TodoService todoService;
-
-    public TodoController(TodoService todoService) {
-        this.todoService = todoService;
-    }
+    @Autowired
+    private TodoService todoService;
 
     @PostMapping
-    List<Todo> create(@RequestBody Todo todo){
+    public List<Todo> create(@RequestBody Todo todo){
         return todoService.create(todo);
     }
 
     @GetMapping
-    List<Todo> list(){
+    public List<Todo> list(){
         return todoService.list();
     }
 
     @PutMapping
-    List<Todo> update(@RequestBody Todo todo){
+    public List<Todo> update(@RequestBody Todo todo){
         return todoService.update(todo);
     }
 
-    @DeleteMapping("{id}")
-    List<Todo> delete(@PathVariable("id") Long id){
+    @DeleteMapping("/{id}")
+    public List<Todo> delete(@PathVariable("id") Long id){
         return todoService.delete(id);
     }
 }
