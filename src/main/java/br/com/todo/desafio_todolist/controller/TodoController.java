@@ -16,10 +16,10 @@ import br.com.todo.desafio_todolist.service.TodoService;
 
 @RestController
 @RequestMapping("/todos")
-public class TodoContoller {
-    private TodoService todoService;
+public class TodoController {
+    private final TodoService todoService;
 
-    public TodoContoller(TodoService todoService) {
+    public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
 
