@@ -13,23 +13,32 @@ API RESTful para gerenciamento de tarefas desenvolvida em Java com Spring Boot.
 - **Docker & Docker Compose**
 - **Maven**
 
-##  Execução 
+## Execução Rápida
 
-### Com Docker
+### Instalação e Execução
 ```bash
-git clone [seu-repositorio]
-cd desafio-todolist
-docker-compose up -d
-```
-
-### Local
-```bash
-# Configure MySQL e crie o banco 'todolist'
+git clone https://github.com/Eduardolimzz/spring-boot-todo-challenge.git
+cd spring-boot-todo-challenge
 ./mvnw spring-boot:run
 ```
 
-**API:** http://localhost:8080  
-**Swagger:** http://localhost:8080/swagger-ui.html
+A aplicação estará disponível em:
+- **API**: http://localhost:8080
+- **Documentação Swagger**: http://localhost:8080/swagger-ui.html
+- **Console H2**: http://localhost:8080/h2-console
+
+### Acesso ao Banco H2 (Desenvolvimento)
+- **JDBC URL**: `jdbc:h2:mem:todolist`
+- **Username**: `sa`
+- **Password**: (deixar em branco)
+
+  ### Com Docker
+```bash
+git clone https://github.com/Eduardolimzz/spring-boot-todo-challenge.git
+cd spring-boot-todo-challenge
+docker-compose up -d
+```
+---
 
 ###  Funcionalidades
 - Criar tarefa com título, descrição, data de vencimento, status e prioridade
@@ -57,22 +66,31 @@ docker-compose up -d
    - Descrição opcional (máx 500 caracteres)
 4. **Ordenação padrão**: Por prioridade (desc) e depois por nome (asc)
 
-## 🛠 Endpoints Principais
+## API Endpoints
 
+### Gestão de Tarefas
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| `POST` | `/todos` | Criar tarefa |
-| `GET` | `/todos` | Listar com filtros |
-| `GET` | `/todos/all` | Listar todas sem paginação |
-| `GET` | `/todos/{id}` | Buscar por ID |
-| `PUT` | `/todos/{id}` | Atualizar tarefa |
-| `PATCH` | `/todos/{id}/status` | Atualizar status |
-| `DELETE` | `/todos/{id}` | Deletar tarefa |
+| `POST` | `/todos` | Criar nova tarefa |
+| `GET` | `/todos` | Listar tarefas com paginação e filtros |
+| `GET` | `/todos/all` | Listar todas as tarefas |
+| `GET` | `/todos/{id}` | Buscar tarefa por ID |
+| `PUT` | `/todos/{id}` | Atualizar tarefa completa |
+| `PATCH` | `/todos/{id}/status` | Atualizar apenas o status |
+| `DELETE` | `/todos/{id}` | Excluir tarefa |
+
+### Sistema de Subtarefas
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
 | `POST` | `/todos/{id}/subtarefas` | Criar subtarefa |
 | `GET` | `/todos/{id}/subtarefas` | Listar subtarefas |
-| `GET` | `/todos/vencidas` | Tarefas vencidas |
-| `GET` | `/todos/vencimento-proximo` | Vencimento próximo |
-| `GET` | `/todos/status/{realizado}` | Filtrar por status |
+
+### Filtros e Consultas
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| `GET` | `/todos/vencidas` | Tarefas com prazo vencido |
+| `GET` | `/todos/vencimento-proximo` | Tarefas próximas do vencimento |
+| `GET` | `/todos/status/{realizado}` | Filtrar por status de conclusão |
 | `GET` | `/todos/prioridade/{prioridade}` | Filtrar por prioridade |
 
 ## Exemplos de Uso
@@ -192,9 +210,10 @@ docker-compose up --build -d
 ##  Configuração
 
 **Profiles disponíveis:**
-- `default` - MySQL local (porta 3306)
+- `dev` (padrão) - H2 em memória  
+- `mysql` - MySQL local (porta 3306)
 - `docker` - MySQL em container  
-- `test` - H2 em memória
+- `test` - H2 em memória para testes
 
 **Credenciais Docker:**
 - Database: `todolist_db`
@@ -266,9 +285,18 @@ A API retorna respostas estruturadas para diferentes tipos de erro:
 4. Push para a branch (`git push origin feature/nova-funcionalidade`)
 5. Abra um Pull Request
 
+---
+
 ## Autor
 
-**Eduardo Lima dos Santos**
-- GitHub: [@Eduardolimzz]([https://github.com/seuusuario](https://github.com/Eduardolimzz))
-- LinkedIn: [Eduardo Lima dos Santos](https://www.linkedin.com/in/eduardo-lima-dos-santos-3b1092316)
-- Email: eduardoaluno1800@gmail.com
+<div align="center">
+  <img src="https://github.com/Eduardolimzz.png" width="100px" style="border-radius: 50%">
+
+  **Eduardo Lima dos Santos**
+
+  [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat&logo=github)](https://github.com/Eduardolimzz)
+  [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/eduardo-lima-3b1092316/)
+  
+**Contato**: eduardoaluno1800@gmail.com
+---
+**Projeto desenvolvido como demonstração de competências técnicas em desenvolvimento de APIs REST com Spring Boot.**
