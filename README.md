@@ -15,11 +15,18 @@ API RESTful para gerenciamento de tarefas desenvolvida em Java com Spring Boot.
 
 ## Execução Rápida
 
-### Instalação e Execução
+### Instalação e Execução (Linux/macOS)
 ```bash
 git clone https://github.com/Eduardolimzz/spring-boot-todo-challenge.git
 cd spring-boot-todo-challenge
 ./mvnw spring-boot:run
+```
+
+### Instalação e Execução (Windows)
+```cmd
+git clone https://github.com/Eduardolimzz/spring-boot-todo-challenge.git
+cd spring-boot-todo-challenge
+mvnw.cmd spring-boot:run
 ```
 
 A aplicação estará disponível em:
@@ -28,16 +35,29 @@ A aplicação estará disponível em:
 - **Console H2**: http://localhost:8080/h2-console
 
 ### Acesso ao Banco H2 (Desenvolvimento)
+Para acessar o console H2 em http://localhost:8080/h2-console, use as seguintes configurações:
+
+- **Driver Class**: `org.h2.Driver`
 - **JDBC URL**: `jdbc:h2:mem:todolist`
-- **Username**: `sa`
+- **User Name**: `sa`
 - **Password**: (deixar em branco)
 
-  ### Com Docker
+### Com Docker
+
+#### Linux/macOS
 ```bash
 git clone https://github.com/Eduardolimzz/spring-boot-todo-challenge.git
 cd spring-boot-todo-challenge
 docker-compose up -d
 ```
+
+#### Windows
+```cmd
+git clone https://github.com/Eduardolimzz/spring-boot-todo-challenge.git
+cd spring-boot-todo-challenge
+docker-compose up -d
+```
+
 ---
 
 ###  Funcionalidades
@@ -169,12 +189,22 @@ src/
 
 ##  Testes
 
+### Linux/macOS
 ```bash
 # Executar todos os testes
 ./mvnw test
 
 # Executar com profile de teste
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=test
+```
+
+### Windows
+```cmd
+# Executar todos os testes
+mvnw.cmd test
+
+# Executar com profile de teste
+mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=test
 ```
 
 **Cobertura de testes:**
